@@ -1,5 +1,5 @@
 class Issue {
-  final String status;
+  final String level;
   final String message;
   final String path;
   final int line;
@@ -7,7 +7,7 @@ class Issue {
   final String name;
 
   Issue(
-    this.status,
+    this.level,
     this.message,
     this.path,
     this.line,

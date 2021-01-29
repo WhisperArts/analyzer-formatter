@@ -1,5 +1,6 @@
-import 'package:analyzer_formatter/src/api/file_with_issues.dart';
+import 'file_with_issues.dart';
 
+// ignore: one_member_abstracts
 abstract class Report {
   String format(Iterable<FileWithIssues> problemFiles);
 }

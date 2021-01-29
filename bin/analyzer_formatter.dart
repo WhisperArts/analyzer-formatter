@@ -1,28 +1,46 @@
 import 'dart:io';
 
-import 'package:analyzer_formatter/src/analyzer_result_parser.dart';
+import 'package:analyzer_formatter/analyzer_formatter.dart';
+import 'package:analyzer_formatter/src/cli/argument_parse_exception.dart';
+import 'package:analyzer_formatter/src/cli/arguments.dart';
+import 'package:analyzer_formatter/src/cli/arguments_parser.dart';
 import 'package:analyzer_formatter/src/impl/checkstyle_xml_report.dart';
-import 'package:analyzer_formatter/src/analyzer_reports_creator.dart';
+import 'package:analyzer_formatter/src/analyzer_result_parser.dart';
+import 'package:path/path.dart';
+
+const _defaultReportSuffix = 'report';
+
+const _successExitCode = 0;
+const _argumentParseExceptionExitCode = -1;
+const _reportFileNotFoundExitCode = -2;
 
 Future<void> main(List<String> arguments) async {
-  final outputFileName = '${Directory.current.path}/flutter_analyze_output.txt';
-  final result = await Process.run(
-    'flutter analyze > $outputFileName',
-    [],
-    runInShell: true,
-  );
-  if (result.exitCode != 0) {
-    String reportFilename = 'checkstyle-report';
-    final analyzerResultParser = AnalyzerResultParser(File(outputFileName));
-    final problemFiles = analyzerResultParser.problemFiles();
-    final reportsCreator = AnalyzerReportsCreator(
-        [XmlReportInstance],
+  final parsedArgs = <String, String>{};
+  try {
+    parsedArgs.addAll(parseArguments(arguments));
+    if (parsedArgs[argumentHelp] != null) {
+      // TODO: add usage info print
+      exit(_successExitCode);
+    }
+  } on ArgumentParseException catch (e) {
+    print(e);
+    exit(_argumentParseExceptionExitCode);
+  }
+  final reportFileName = parsedArgs[argumentAnalyzerReportFile] ?? 'analyzer_report.txt';
+  final reportFile = File(absolute(reportFileName));
+  if (reportFile.existsSync()) {
+    final problemFiles = parseAnalyzerReport(reportFile);
+    if (problemFiles.isNotEmpty) {
+      final suffix = parsedArgs[argumentReportSuffix] ?? _defaultReportSuffix;
+      formatAnalyzerReport(
+        [CheckstyleXmlReportInstance],
         problemFiles,
-        reportFilename,
-    );
-    reportsCreator.createReports();
-    exit(-1);
+        suffix,
+      );
+    }
+    exit(_successExitCode);
   } else {
-    exit(0);
+    print('Dart Analyzer report file not found. Searched for name: $reportFileName');
+    exit(_reportFileNotFoundExitCode);
   }
 }
