@@ -37,7 +37,10 @@ Iterable<FileWithIssues> parseAnalyzerReport(File analyzerReport) {
 bool _isErrorLine(String line) => line.startsWith('error') || line.startsWith('info');
 
 Issue _parseIssue(String inputLine) {
-  final result = inputLine.split('-');
+  var result = inputLine.split('-');
+  if (result.isEmpty || result.length != _reportErrorComponentsCount) {
+    result = inputLine.split('•');
+  }
   if (result.isEmpty || result.length != _reportErrorComponentsCount) {
     _throwReportFormatException();
   }
