@@ -16,4 +16,5 @@ class ReportUnit {
 
 enum ReportType {
   checkstyleXml,
+  testStyleXml,
 }

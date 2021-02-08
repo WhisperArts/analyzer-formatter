@@ -5,18 +5,13 @@ import '../api/file_with_issues.dart';
 import '../api/report.dart';
 import '../api/report_unit.dart';
 
-// ignore: non_constant_identifier_names
-final CheckstyleXmlReportInstance = ReportUnit(
-  ReportType.checkstyleXml,
-  _CheckstyleXmlReport(),
-  'checkstyle',
-  'xml',
-);
+final TestStyleXmlReportInstance = ReportUnit(
+    ReportType.testStyleXml, _TeststyleXmlReport(), 'testsuite', 'xml');
 
-class _CheckstyleXmlReport extends Report {
+class _TeststyleXmlReport extends Report {
   void _addErrorToBuilder(XmlBuilder builder, Issue issue) {
     builder.element(
-      'error',
+      'failure',
       nest: () {
         builder.attribute(
           'line',
@@ -50,14 +45,14 @@ class _CheckstyleXmlReport extends Report {
       'version="1.0"',
     );
     builder.element(
-      'checkstyle',
+      'testsuite',
       attributes: {
-        'version': '8.38',
+        'tests': '${problemFiles.length}',
       },
       nest: () {
         problemFiles.forEach((fileWithIssues) {
           builder.element(
-            'file',
+            'testcase',
             attributes: {
               'name': fileWithIssues.path,
             },
