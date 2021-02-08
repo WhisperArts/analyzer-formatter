@@ -34,13 +34,13 @@ Iterable<FileWithIssues> parseAnalyzerReport(File analyzerReport) {
   return files.values;
 }
 
-bool _isErrorLine(String line) => line.startsWith('error') || line.startsWith('info');
+bool _isErrorLine(String line) =>
+    line.startsWith('error') ||
+    line.startsWith('info') ||
+    line.startsWith('warning');
 
 Issue _parseIssue(String inputLine) {
-  var result = inputLine.split('-');
-  if (result.isEmpty || result.length != _reportErrorComponentsCount) {
-    result = inputLine.split('•');
-  }
+  final result = inputLine.split(RegExp(r"[•]"));
   if (result.isEmpty || result.length != _reportErrorComponentsCount) {
     _throwReportFormatException();
   }

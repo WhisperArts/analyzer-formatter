@@ -20,6 +20,8 @@ Map<String, String> parseArguments(List<String> arguments) {
       }
     } else if (argument == argumentHelp) {
       parsedArgs[argumentHelp] = null;
+    } else if (argument == testStyle) {
+      parsedArgs[testStyle] = 'true';
     } else {
       _throwArgumentParseException(argument);
     }
