@@ -5,8 +5,13 @@ import '../api/file_with_issues.dart';
 import '../api/report.dart';
 import '../api/report_unit.dart';
 
+/// Instance of JUnit compatible report unit.
+// ignore: non_constant_identifier_names
 final TestStyleXmlReportInstance = ReportUnit(
-    ReportType.testStyleXml, _TeststyleXmlReport(), 'testsuite', 'xml');
+  ReportType.testStyleXml, _TeststyleXmlReport(),
+  'testsuite',
+  'xml'
+);
 
 class _TeststyleXmlReport extends Report {
   void _addErrorToBuilder(XmlBuilder builder, Issue issue) {

@@ -1,6 +1,7 @@
 import 'argument_parse_exception.dart';
 import 'arguments.dart';
 
+/// Parse arguments and return a map with argments and its values.
 Map<String, String> parseArguments(List<String> arguments) {
   final parsedArgs = <String, String>{};
   arguments.forEach((argument) {

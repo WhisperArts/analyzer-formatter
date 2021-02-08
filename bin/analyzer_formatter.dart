@@ -8,7 +8,6 @@ import 'package:analyzer_formatter/src/impl/checkstyle_xml_report.dart';
 import 'package:analyzer_formatter/src/analyzer_result_parser.dart';
 import 'package:analyzer_formatter/src/impl/teststyle_xml_report.dart';
 import 'package:path/path.dart';
-import 'package:xml/xml.dart';
 
 const _defaultReportSuffix = 'report';
 
@@ -35,12 +34,11 @@ Future<void> main(List<String> arguments) async {
     final problemFiles = parseAnalyzerReport(reportFile);
     if (problemFiles.isNotEmpty) {
       final suffix = parsedArgs[argumentReportSuffix] ?? _defaultReportSuffix;
-      final mainReporter = parsedArgs[testStyle] == 'true'
+      final reporter = parsedArgs[testStyle] == 'true'
           ? TestStyleXmlReportInstance
           : CheckstyleXmlReportInstance;
-
       formatAnalyzerReport(
-        [mainReporter],
+        [reporter],
         problemFiles,
         suffix,
       );

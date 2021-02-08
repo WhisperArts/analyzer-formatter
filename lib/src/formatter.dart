@@ -5,6 +5,7 @@ import 'package:path/path.dart';
 import 'api/file_with_issues.dart';
 import 'api/report_unit.dart';
 
+// ignore: public_member_api_docs
 void formatAnalyzerReport(
   Iterable<ReportUnit> reportUnits,
   Iterable<FileWithIssues> problemFiles,

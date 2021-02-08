@@ -5,6 +5,7 @@ import '../api/file_with_issues.dart';
 import '../api/report.dart';
 import '../api/report_unit.dart';
 
+/// Instance of Checkstyle compatible report unit.
 // ignore: non_constant_identifier_names
 final CheckstyleXmlReportInstance = ReportUnit(
   ReportType.checkstyleXml,

@@ -18,6 +18,7 @@ const _pathValueIndex = 0;
 const _lineValueIndex = 1;
 const _offsetValueIndex = 2;
 
+/// Parsing Dart Analyzer output and returning files with issues.
 Iterable<FileWithIssues> parseAnalyzerReport(File analyzerReport) {
   final files = <String, FileWithIssues>{};
   analyzerReport.readAsLinesSync().where((element) {
