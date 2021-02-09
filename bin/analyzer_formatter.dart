@@ -8,13 +8,13 @@ import 'package:analyzer_formatter/src/impl/checkstyle_xml_report.dart';
 import 'package:analyzer_formatter/src/analyzer_result_parser.dart';
 import 'package:analyzer_formatter/src/impl/teststyle_xml_report.dart';
 import 'package:path/path.dart';
-import 'package:xml/xml.dart';
 
 const _defaultReportSuffix = 'report';
 
 const _successExitCode = 0;
 const _argumentParseExceptionExitCode = -1;
 const _reportFileNotFoundExitCode = -2;
+const _hasErrorsExitCode = -3;
 
 Future<void> main(List<String> arguments) async {
   final parsedArgs = <String, String>{};
@@ -35,17 +35,18 @@ Future<void> main(List<String> arguments) async {
     final problemFiles = parseAnalyzerReport(reportFile);
     if (problemFiles.isNotEmpty) {
       final suffix = parsedArgs[argumentReportSuffix] ?? _defaultReportSuffix;
-      final mainReporter = parsedArgs[testStyle] == 'true'
+      final reporter = parsedArgs[testStyle] == 'true'
           ? TestStyleXmlReportInstance
           : CheckstyleXmlReportInstance;
-
       formatAnalyzerReport(
-        [mainReporter],
+        [reporter],
         problemFiles,
         suffix,
       );
+      exit(_hasErrorsExitCode);
+    } else {
+      exit(_successExitCode);
     }
-    exit(_successExitCode);
   } else {
     print(
         'Dart Analyzer report file not found. Searched for name: $reportFileName');
