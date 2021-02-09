@@ -14,34 +14,6 @@ final TestStyleXmlReportInstance = ReportUnit(
 );
 
 class _TeststyleXmlReport extends Report {
-  void _addErrorToBuilder(XmlBuilder builder, Issue issue) {
-    builder.element(
-      'failure',
-      nest: () {
-        builder.attribute(
-          'line',
-          issue.line,
-        );
-        builder.attribute(
-          'column',
-          issue.column,
-        );
-        builder.attribute(
-          'severity',
-          issue.level,
-        );
-        builder.attribute(
-          'message',
-          issue.message,
-        );
-        builder.attribute(
-          'source',
-          issue.path,
-        );
-      },
-    );
-  }
-
   @override
   String format(Iterable<FileWithIssues> problemFiles) {
     final builder = XmlBuilder();
@@ -71,5 +43,33 @@ class _TeststyleXmlReport extends Report {
       },
     );
     return builder.buildDocument().toXmlString(pretty: true);
+  }
+
+  void _addErrorToBuilder(XmlBuilder builder, Issue issue) {
+    builder.element(
+      'failure',
+      nest: () {
+        builder.attribute(
+          'line',
+          issue.line,
+        );
+        builder.attribute(
+          'column',
+          issue.column,
+        );
+        builder.attribute(
+          'severity',
+          issue.level,
+        );
+        builder.attribute(
+          'message',
+          issue.message,
+        );
+        builder.attribute(
+          'source',
+          issue.path,
+        );
+      },
+    );
   }
 }

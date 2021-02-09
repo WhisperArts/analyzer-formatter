@@ -15,34 +15,6 @@ final CheckstyleXmlReportInstance = ReportUnit(
 );
 
 class _CheckstyleXmlReport extends Report {
-  void _addErrorToBuilder(XmlBuilder builder, Issue issue) {
-    builder.element(
-      'error',
-      nest: () {
-        builder.attribute(
-          'line',
-          issue.line,
-        );
-        builder.attribute(
-          'column',
-          issue.column,
-        );
-        builder.attribute(
-          'severity',
-          issue.level,
-        );
-        builder.attribute(
-          'message',
-          issue.message,
-        );
-        builder.attribute(
-          'source',
-          issue.path,
-        );
-      },
-    );
-  }
-
   @override
   String format(Iterable<FileWithIssues> problemFiles) {
     final builder = XmlBuilder();
@@ -72,5 +44,36 @@ class _CheckstyleXmlReport extends Report {
       },
     );
     return builder.buildDocument().toXmlString(pretty: true);
+  }
+
+  void _addErrorToBuilder(XmlBuilder builder, Issue issue) {
+    builder.element(
+      'error',
+      attributes: {
+        'name': issue.path,
+      },
+      nest: () {
+        builder.attribute(
+          'line',
+          issue.line,
+        );
+        builder.attribute(
+          'column',
+          issue.column,
+        );
+        builder.attribute(
+          'severity',
+          issue.level,
+        );
+        builder.attribute(
+          'message',
+          issue.name,
+        );
+        builder.attribute(
+          'source',
+          issue.name,
+        );
+      },
+    );
   }
 }
