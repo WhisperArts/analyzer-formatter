@@ -14,6 +14,7 @@ const _defaultReportSuffix = 'report';
 const _successExitCode = 0;
 const _argumentParseExceptionExitCode = -1;
 const _reportFileNotFoundExitCode = -2;
+const _hasErrorsExitCode = -3;
 
 Future<void> main(List<String> arguments) async {
   final parsedArgs = <String, String>{};
@@ -42,8 +43,10 @@ Future<void> main(List<String> arguments) async {
         problemFiles,
         suffix,
       );
+      exit(_hasErrorsExitCode);
+    } else {
+      exit(_successExitCode);
     }
-    exit(_successExitCode);
   } else {
     print(
         'Dart Analyzer report file not found. Searched for name: $reportFileName');

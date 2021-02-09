@@ -58,10 +58,6 @@ class _CheckstyleXmlReport extends Report {
           issue.line,
         );
         builder.attribute(
-          'column',
-          issue.column,
-        );
-        builder.attribute(
           'severity',
           issue.level,
         );
