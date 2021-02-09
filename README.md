@@ -1,6 +1,7 @@
 # analyzer_formatter
 
 [![GitHubActions](https://github.com/WhisperArts/analyzer-formatter/workflows/Build/badge.svg)](https://github.com/WhisperArts/analyzer-formatter/actions?query=workflow%3ABuild)
+[![pub.dev](https://img.shields.io/pub/v/analyzer_formatter.svg)](https://pub.dartlang.org/packages/analyzer_formatter)
 
 ## About
 
