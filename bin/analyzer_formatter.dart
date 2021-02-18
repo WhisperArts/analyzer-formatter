@@ -21,7 +21,7 @@ Future<void> main(List<String> arguments) async {
   try {
     parsedArgs.addAll(parseArguments(arguments));
     if (parsedArgs[argumentHelp] != null) {
-      // TODO: add usage info print
+      // TODO: add usage info
       exit(_successExitCode);
     }
   } on ArgumentParseException catch (e) {
@@ -33,16 +33,16 @@ Future<void> main(List<String> arguments) async {
   final reportFile = File(absolute(reportFileName));
   if (reportFile.existsSync()) {
     final problemFiles = parseAnalyzerReport(reportFile);
+    final suffix = parsedArgs[argumentReportSuffix] ?? _defaultReportSuffix;
+    final reporter = parsedArgs[testStyle] == 'true'
+        ? TestStyleXmlReportInstance
+        : CheckstyleXmlReportInstance;
+    formatAnalyzerReport(
+      [reporter],
+      problemFiles,
+      suffix,
+    );
     if (problemFiles.isNotEmpty) {
-      final suffix = parsedArgs[argumentReportSuffix] ?? _defaultReportSuffix;
-      final reporter = parsedArgs[testStyle] == 'true'
-          ? TestStyleXmlReportInstance
-          : CheckstyleXmlReportInstance;
-      formatAnalyzerReport(
-        [reporter],
-        problemFiles,
-        suffix,
-      );
       exit(_hasErrorsExitCode);
     } else {
       exit(_successExitCode);

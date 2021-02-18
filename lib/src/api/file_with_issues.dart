@@ -4,6 +4,7 @@ import 'issue.dart';
 class FileWithIssues {
   /// Path to a file with issues.
   final String path;
+
   /// Issues in a file.
   final List<Issue> issues;
 

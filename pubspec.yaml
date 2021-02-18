@@ -1,6 +1,6 @@
 name: analyzer_formatter
-description: Tool for Dart Analyzer result formatting
-version: 0.1.2
+description: Dart Analyzer result formatter
+version: 0.1.3
 homepage: https://github.com/WhisperArts/analyzer-formatter
 
 environment:
