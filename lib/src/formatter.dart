@@ -12,7 +12,8 @@ void formatAnalyzerReport(
   String suffix,
 ) {
   reportUnits.forEach((reportUnit) {
-    final reportFilePath = '${Directory.current.path}$separator${reportUnit.prefix}-$suffix.${reportUnit.extension}';
+    final reportFilePath =
+        '${Directory.current.path}$separator${reportUnit.prefix}-$suffix.${reportUnit.extension}';
     final report = File(reportFilePath);
     if (report.existsSync()) {
       report.deleteSync();
