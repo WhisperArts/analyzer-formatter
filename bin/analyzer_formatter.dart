@@ -21,7 +21,15 @@ Future<void> main(List<String> arguments) async {
   try {
     parsedArgs.addAll(parseArguments(arguments));
     if (parsedArgs[argumentHelp] != null) {
-      // TODO: add usage info
+      print('\nCommon commands:\n\n'
+      '   flutter pub global run analyzer_formatter --analyzerReportFile=<path>\n'
+      '     provide relative path to analyzer report file\n\n'
+      '   flutter pub global run analyzer_formatter --outputSuffix=<suffix>\n'
+      '     replace the suffix in the converted report file\n\n'
+      '   flutter pub global run analyzer_formatter --help\n'
+      '     print tool description and usage information\n\n'
+      '   flutter pub global run analyzer_formatter --testStyle\n'
+      '     convert a result to JUnit report\n');
       exit(_successExitCode);
     }
   } on ArgumentParseException catch (e) {

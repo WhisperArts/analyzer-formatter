@@ -4,7 +4,9 @@ const argumentAnalyzerReportFile = '--analyzerReportFile';
 
 /// Customize report filename.
 const argumentReportSuffix = '--outputSuffix';
-// ignore: public_member_api_docs.
+
+/// Print tool description
+// ignore: public_member_api_docs
 const argumentHelp = '--help';
 
 /// Convert Dart Analyzer report to JUnit compatible format.

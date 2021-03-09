@@ -8,9 +8,9 @@ import '../api/report_unit.dart';
 /// Instance of JUnit compatible report unit.
 // ignore: non_constant_identifier_names
 final TestStyleXmlReportInstance = ReportUnit(
-    ReportType.testStyleXml, _TeststyleXmlReport(), 'testsuite', 'xml');
+    ReportType.testStyleXml, _TestStyleXmlReport(), 'testsuite', 'xml');
 
-class _TeststyleXmlReport extends Report {
+class _TestStyleXmlReport extends Report {
   @override
   String format(Iterable<FileWithIssues> problemFiles) {
     final builder = XmlBuilder();

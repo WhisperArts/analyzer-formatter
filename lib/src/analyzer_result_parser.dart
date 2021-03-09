@@ -27,7 +27,7 @@ Iterable<FileWithIssues> parseAnalyzerReport(File analyzerReport) {
   }).forEach((line) {
     final issue = _parseIssue(line);
     if (files.containsKey(issue.path)) {
-      files[issue.path].issues.add(issue);
+      files[issue.path]?.issues.add(issue);
     } else {
       files[issue.path] = FileWithIssues(issue.path, [issue]);
     }
