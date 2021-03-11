@@ -1,3 +1,7 @@
+### 0.1.3
+
+- Added reports generation when Analyzer found no errors.
+
 ### 0.1.2
 
 - Added JUnit test report support.
