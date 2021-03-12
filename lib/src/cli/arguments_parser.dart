@@ -1,7 +1,7 @@
 import 'argument_parse_exception.dart';
 import 'arguments.dart';
 
-/// Parse arguments and return a map with argments and its values.
+/// Parse arguments and return a map with arguments and its values.
 Map<String, String> parseArguments(List<String> arguments) {
   final parsedArgs = <String, String>{};
   arguments.forEach((argument) {
@@ -20,7 +20,7 @@ Map<String, String> parseArguments(List<String> arguments) {
         }
       }
     } else if (argument == argumentHelp) {
-      parsedArgs[argumentHelp] = null;
+      parsedArgs[argumentHelp] = '';
     } else if (argument == testStyle) {
       parsedArgs[testStyle] = 'true';
     } else {

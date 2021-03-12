@@ -23,6 +23,8 @@ class ReportUnit {
 
 /// All available report types in tool.
 enum ReportType {
+  // ignore: public_member_api_docs
   checkstyleXml,
+  // ignore: public_member_api_docs
   testStyleXml,
 }
