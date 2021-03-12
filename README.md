@@ -55,3 +55,4 @@ If you don't see any error messages, submit your pull request.
 - [@fartem](https://github.com/fartem) as Artem Fomchenkov
 - [@dynaevdv](https://github.com/dynaevdv) as Denis Dunaev
 - [@qwertyway](https://github.com/qwertyway) as Artem Demyanov
+- [@GeorgeOblomov](https://github.com/GeorgeOblomov) as Egor Grischenkov
