@@ -1,3 +1,7 @@
+### 0.2.0
+
+- Migrate to Null safety.
+
 ### 0.1.3
 
 - Added reports generation when Analyzer found no errors.
